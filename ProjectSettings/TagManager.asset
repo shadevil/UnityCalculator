@@ -3,7 +3,26 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - 1b
+  - 2b
+  - 3b
+  - 4b
+  - 5b
+  - 6b
+  - 7b
+  - 8b
+  - 9b
+  - 0b
+  - Add
+  - Subtract
+  - Multiply
+  - Divide
+  - Point
+  - Equal
+  - C
+  - On
+  - Off
   layers:
   - Default
   - TransparentFX
