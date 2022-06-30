@@ -1,28 +1,29 @@
-public class Calculator
+public static class Calculator
 {
-    public float Equal(float first_numb, float second_numb, string param, out int Error)
+    public static float Calculate(float first_numb, float second_numb, string param, out int Error)
     {
-        if (second_numb != 0)
+        Error = 0;
+        if (param == Names.Add)
         {
-            Error = 0;
-            switch (param)
+            return first_numb + second_numb;
+        }
+        if (param == Names.Subtract)
+        {
+            return first_numb - second_numb;
+        }
+        if (param == Names.Multiply)
+        {
+            return first_numb * second_numb;
+        }
+        if (param == Names.Divide)
+        {
+            if (second_numb == 0)
             {
-                case Names.Add:
-                    return first_numb + second_numb;
-                case Names.Multiply:
-                    return first_numb * second_numb;
-                case Names.Subtract:
-                    return first_numb - second_numb;
-                case Names.Divide:
-                    return first_numb / second_numb;
-                default:
-                    return 0;
+                Error = 1;
+                return 0;
             }
+            else return first_numb / second_numb;
         }
-        else
-        {
-            Error = 1;
-            return 0;
-        }
+        return 0;
     }
 }

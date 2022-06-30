@@ -8,5 +8,6 @@ public static class Names
     public const string On = nameof(On);
     public const string Off = nameof(Off);
     public const string Point = nameof(Point);
-    public const string Equal = nameof(Equal);
+    public const string Calculate = nameof(Calculate);
+    public const string Numb = nameof(Numb);
 }

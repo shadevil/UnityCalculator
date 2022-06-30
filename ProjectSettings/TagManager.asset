@@ -19,10 +19,11 @@ TagManager:
   - Multiply
   - Divide
   - Point
-  - Equal
   - C
   - On
   - Off
+  - Numb
+  - Calculate
   layers:
   - Default
   - TransparentFX
