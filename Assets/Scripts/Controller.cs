@@ -8,9 +8,15 @@ public class Controller : MonoBehaviour
     private TextMesh displayText;
     private float first_numb;
     private float second_numb;
+    private float intPart;
+    private bool isFloat = false;
     private string param;
 
-    void Start() => displayText = display.GetComponent<TextMesh>();
+    void Start()
+    {
+        display.SetActive(false);
+        displayText = display.GetComponent<TextMesh>();
+    }
 
     void Update()
     {
@@ -29,7 +35,9 @@ public class Controller : MonoBehaviour
                     }
                     if(hit.transform.tag == Names.Numb && displayText.text.Length < 7) 
                     {
-                        displayText.text = (displayText.text == "0") ? hit.transform.name : (displayText.text + hit.transform.name);
+                        if (!isFloat) displayText.text = (displayText.text == "0") ? hit.transform.name : (displayText.text + hit.transform.name);
+                        else displayText.text = (displayText.text == "0") ? "0." + hit.transform.name : (displayText.text + hit.transform.name);
+                        isFloat = false;
                     }
 
                     if(hit.transform.tag == Names.Add || hit.transform.tag == Names.Subtract || hit.transform.tag == Names.Multiply || hit.transform.tag == Names.Divide) 
@@ -45,7 +53,14 @@ public class Controller : MonoBehaviour
                         displayText.text = Calculator.Calculate(first_numb, second_numb, param, out int Error).ToString();
                         if (Error == 1) displayText.text = "can't";
                     }
-                    if (hit.transform.tag == Names.C) displayText.text = "0";
+
+                    if (hit.transform.tag == Names.Point)
+                    {
+                        isFloat = true;
+                        intPart = float.Parse(displayText.text);
+                    }
+
+                    if (hit.transform.tag == Names.C) { displayText.text = "0"; isFloat = false; }
                 }
                 else 
                 {
