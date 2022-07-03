@@ -11,6 +11,11 @@ public class Controller : MonoBehaviour
     private float intPart;
     private bool isFloat = false;
     private string param;
+    [SerializeField] private AudioSource onSound;
+    [SerializeField] private AudioSource offSound;
+    [SerializeField] private AudioSource clickSound;
+    [SerializeField] private AudioSource errorSound;
+
 
     void Start()
     {
@@ -30,11 +35,13 @@ public class Controller : MonoBehaviour
                 {
                     if (hit.transform.tag == Names.Off)
                     {
+                        offSound.Play();
                         display.SetActive(false);
 
                     }
                     if(hit.transform.tag == Names.Numb && displayText.text.Length < 7) 
                     {
+                        clickSound.Play();
                         if (!isFloat) displayText.text = (displayText.text == "0") ? hit.transform.name : (displayText.text + hit.transform.name);
                         else displayText.text = (displayText.text == "0") ? "0." + hit.transform.name : (displayText.text + hit.transform.name);
                         isFloat = false;
@@ -42,31 +49,44 @@ public class Controller : MonoBehaviour
 
                     if(hit.transform.tag == Names.Add || hit.transform.tag == Names.Subtract || hit.transform.tag == Names.Multiply || hit.transform.tag == Names.Divide) 
                     {
+                        clickSound.Play();
                         param = hit.transform.tag;
                         first_numb = float.Parse(displayText.text);
                         displayText.text = "0";
                     }
                     if(hit.transform.tag == Names.Calculate) 
                     {
+                        clickSound.Play();
                         second_numb = float.Parse(displayText.text);
                         
                         displayText.text = Calculator.Calculate(first_numb, second_numb, param, out int Error).ToString();
-                        if (Error == 1) displayText.text = "can't";
+                        if (Error == 1)
+                        {
+                            errorSound.Play();
+                            displayText.text = "can't";
+                        }
                     }
 
                     if (hit.transform.tag == Names.Point)
                     {
+                        clickSound.Play();
                         isFloat = true;
                         intPart = float.Parse(displayText.text);
                     }
 
-                    if (hit.transform.tag == Names.C) { displayText.text = "0"; isFloat = false; }
+                    if (hit.transform.tag == Names.C)
+                    { displayText.text = "0";
+                      isFloat = false;
+                      clickSound.Play();
+                    }
                 }
                 else 
                 {
                     if(hit.transform.tag == Names.On) 
                     {
+                        onSound.Play();
                         display.SetActive(true);
+                        displayText.text = "0";
                     }
                 }
             }
