@@ -10,4 +10,6 @@ public static class Names
     public const string Point = nameof(Point);
     public const string Calculate = nameof(Calculate);
     public const string Numb = nameof(Numb);
+    public const string Click = nameof(Click);
+    public const string Zero = nameof(Zero);
 }

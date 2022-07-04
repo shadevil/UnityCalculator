@@ -24,6 +24,7 @@ TagManager:
   - Off
   - Numb
   - Calculate
+  - Zero
   layers:
   - Default
   - TransparentFX
