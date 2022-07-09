@@ -12,4 +12,6 @@ public static class Names
     public const string Numb = nameof(Numb);
     public const string Click = nameof(Click);
     public const string Zero = nameof(Zero);
+    public const string Random = nameof(Random);
+    public const string Error = nameof(Error);
 }
